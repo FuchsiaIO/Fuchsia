@@ -1,5 +1,7 @@
 <?php
 
+require_once FUCHSIA_ROOT_PATH.'/vendor/autoload.php';
+
 /************************************************************************************/
 /* This file provides the default object-namespace loading in the following order:  */
 /*  Fuchsia Framework                                                               */

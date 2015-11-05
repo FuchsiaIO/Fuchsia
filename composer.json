@@ -19,7 +19,8 @@
     "mnsami/composer-custom-directory-installer": "1.0.*",
     "FuchsiaIO/ActionController": "dev-master",
     "FuchsiaIO/ActionDispatch": "dev-master",
-    "FuchsiaIO/ActiveSupport": "dev-master"
+    "FuchsiaIO/ActiveSupport": "dev-master",
+    "apache/log4php": "2.3.0"
   },
   
   "extra":{

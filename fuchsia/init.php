@@ -1,5 +1,5 @@
 <?php
-
+  
   $register = \ActionController\Registry\Register::getInstance();
   $register->attach($viewMap, 'viewMap');
   $register->attach($templateMap, 'templateMap');
@@ -18,7 +18,7 @@
 		}
 		else
 		{
-			require_once CONFIG_PATH.'/routes.hh';
+			require_once CONFIG_PATH.'/routes.php';
 			$routes = $router->getRoutes();
 			file_put_contents($routeCache, serialize($routes));			
 		}
@@ -30,7 +30,7 @@
 	$_SERVER['REQUEST_URI'] = (substr($_SERVER['REQUEST_URI'],-1) == '/' && strlen($_SERVER['REQUEST_URI']) > 1) ? substr($_SERVER['REQUEST_URI'],0,-1) : $_SERVER['REQUEST_URI'];
 	$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 	$route = $router->match($path, $_SERVER);
-
+  
 //-------------------
 // Check whether a route has been found 
 
