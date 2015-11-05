@@ -1,0 +1,33 @@
+{
+  
+"repositories": [
+    {
+      "url": "https://github.com/FuchsiaIO/ActionController",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/FuchsiaIO/ActionDispatch",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/FuchsiaIO/ActiveSupport",
+      "type": "git"
+    }
+  ],
+  
+  "require": {
+    "mnsami/composer-custom-directory-installer": "1.0.*",
+    "FuchsiaIO/ActionController": "dev-master",
+    "FuchsiaIO/ActionDispatch": "dev-master",
+    "FuchsiaIO/ActiveSupport": "dev-master"
+  },
+  
+  "extra":{
+    "installer-paths":{
+      "./fuchsia/action_controller": ["FuchsiaIO/ActionController"],
+      "./fuchsia/action_dispatch": ["FuchsiaIO/ActionDispatch"],
+      "./fuchsia/active_support": ["FuchsiaIO/ActiveSupport"]
+    }
+  }
+  
+}
