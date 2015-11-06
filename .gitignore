@@ -1,3 +1,4 @@
 composer.lock
 fuchsia/**/
 vendor/
+.haml_cache/

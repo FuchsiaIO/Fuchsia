@@ -1,1 +1,2 @@
-See me in application/views/index/index.php!
+%div
+  See me in application/views/index/index.php!

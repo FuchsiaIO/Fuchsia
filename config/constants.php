@@ -33,6 +33,13 @@ define('DEFAULT_TEMPLATE','master');
 define('FRAMEWORK_PATH', FUCHSIA_ROOT_PATH.'/fuchsia');
 
 /*
+ * HAML Configurations
+ *  Enable Haml and specify the cache path
+ */
+define('USE_HAML', true);
+define('HAML_CACHE_PATH', FUCHSIA_ROOT_PATH.'/.haml_cache');
+
+/*
  * Application Path Configs
  * Locations of application-based directories
  */

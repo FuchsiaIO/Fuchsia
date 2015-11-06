@@ -1,9 +1,5 @@
-<html>
-  <head></head>
-  <body>
-    <main>
-      <?= $this->getContent() ?>
-    </main>
-  </body>
-  <footer></footer>
-</html>
+%html
+  %head
+  %body
+    %main
+      !=$this->getContent()
