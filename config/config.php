@@ -1,7 +1,6 @@
 <?php
 
 require_once 'constants.php';
-require_once 'packages.php';
 require_once FUCHSIA_ROOT_PATH.'/fuchsia/framework.php';
 require_once 'autoload.php';
 if(USE_ACTIVE_RECORD)
