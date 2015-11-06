@@ -1,0 +1,12 @@
+<configuration xmlns:log4php="http://logging.apache.org/log4php/">
+    <appender name="standard" class="LoggerAppenderFile">
+      <param name="file" value="/var/log/std.log" />
+    </appender>
+    <logger name="main">
+      <appender_ref ref="standard" />
+    </logger>
+    <root>
+      <level value="FATAL" />
+      <appender_ref ref="standard" />
+    </root>
+</configuration>

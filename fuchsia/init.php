@@ -1,5 +1,8 @@
 <?php
   
+  Logger::configure(CONFIG_PATH.'/log_config.xml');
+  $logger = Logger::getLogger('standard');
+  
   $register = \ActionController\Registry\Register::getInstance();
   $register->attach($viewMap, 'viewMap');
   $register->attach($templateMap, 'templateMap');
@@ -36,6 +39,10 @@
 
   if ($route)
   {
+    
+    $logger->trace($route->method[0].' "'.$route->path.'"');
+    $logger->trace('Configs: '.json_encode($route->params));
+  
 		$controllerName = $route->params['controller'];
 		$actionName = $route->params['action'];
 		$dir = isset($route->params['directory']) && $route->params['directory'] ? str_replace('/','\\',$route->params['directory'].'/') : ''; 
@@ -47,6 +54,7 @@
 		if( substr($controllerName,-1) != '\\' )
     {
       $controllerFile = '\\Controllers\\'.$dir.$controllerName.'Controller';
+      $logger->trace('Loading Controller: '.$controllerFile);
       $controller = new $controllerFile();
       unset($controllerFile);
     }
@@ -69,13 +77,15 @@
     if(method_exists($controller, $actionName))
     {
       $controller->filter($actionName);
+      $logger->trace('Executing Action: '.$actionName);
+      $logger->trace('   => '.json_encode($params));
       call_user_func_array(array($controller,$actionName), $params);
     }
     else
     {
-      throw new \ActionController\Exception\UndefinedAction(
-        "Call to undefined action '".$actionName."' in class ".get_class($controller)
-      );
+      $message = "Call to undefined action '".$actionName."' in class ".get_class($controller);
+      $logger->fatal($message);
+      throw new \Exception($message);
     }
 //-------------------
 // Make sure the controller can respond to the following formats
@@ -89,6 +99,7 @@
       !$route->params['format'] 
     )
     {
+      $logger->trace('Valid Responses: '.json_encode($controller->getRenderer()->getData()));
       switch($route->params['format'])
       {
         
@@ -122,17 +133,20 @@
             $controller->view->setLayout(
               $route->params['template'] ? $route->params['template'] : 'master'
             );
+            $logger->trace('Loading Template: '.$controller->view->getLayout());
           }
           
           if(is_bool($controller->getRenderer()->getData()['.html']))
           {
 
 //-------------------
-// HTML - rime.default
+// HTML - fuchsia.default
 
             $viewName = $controllerName.'/'.$actionName.'.php';
             $controller->view->getViewRegistry()->set('fuchsia.default',VIEW_PATH.'/'.$dir.$viewName);
             $controller->view->setView('fuchsia.default');
+            
+            $logger->trace('Setting fuchsia.default: '.$viewName);
                       
           }
           else
@@ -140,7 +154,9 @@
             
 //-------------------
 // HTML - specified route
- 
+            
+            $logger->trace('Defined View: '.$controller->getRenderer()->getData()->get('.html'));
+            
             $controller->view->setView(
               $controller->getRenderer()->getData()->get('.html')
             );
@@ -167,6 +183,7 @@
     {
 //-------------------
 // Internal Error - Controller is unable to respond to the requested format
+      $logger->trace('Unable to respond to: '.$route->params['format']);
       die('Unable to respond to: '.$route->params['format']);
     }
   }
@@ -174,6 +191,7 @@
   {    
 //-------------------
 // 404 - Page Not Found
+    $logger->trace('No Route Found: '.' "'.$_SERVER['REQUEST_URI'].'"');
     die('not found');
        
   }   
