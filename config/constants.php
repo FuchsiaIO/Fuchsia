@@ -27,6 +27,12 @@ define('USE_ACTIVE_RECORD', true);
 define('DEFAULT_TEMPLATE','master');
 
 /*
+ * Framework Path
+ * The location of the framework libraries
+ */
+define('FRAMEWORK_PATH', FUCHSIA_ROOT_PATH.'/fuchsia');
+
+/*
  * Application Path Configs
  * Locations of application-based directories
  */
