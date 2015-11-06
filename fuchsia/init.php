@@ -76,7 +76,9 @@
     
     if(method_exists($controller, $actionName))
     {
-      $controller->filter($actionName);
+      if(method_exists($controller, 'filter'))
+        $controller->filter($actionName);
+        
       $logger->trace('Executing Action: '.$actionName);
       $logger->trace('   => '.json_encode($params));
       call_user_func_array(array($controller,$actionName), $params);
@@ -99,7 +101,10 @@
       !$route->params['format'] 
     )
     {
-      $logger->trace('Valid Responses: '.json_encode($controller->getRenderer()->getData()));
+      
+      if(method_exists($controller, 'getRenderer'))
+        $logger->trace('Valid Responses: '.json_encode($controller->getRenderer()->getData()));
+        
       switch($route->params['format'])
       {
         
@@ -121,7 +126,6 @@
 // HTML
 
         case '.html':
-        
           $controller->loadViewRegistries();
           $controller->view->addData((array)$controller->getData());
 
