@@ -1,8 +1,21 @@
 <?php
 
-//-------------------
-// Load Fuchsia Libraries
+if(USE_ACTIVE_RECORD)
+{
+  $packages['active_record'] = array(
+    'autoload' => 'ActiveRecord.php'
+  );
+}
 
-require_once FRAMEWORK_PATH.'/action_controller/autoload.php';
-require_once FRAMEWORK_PATH.'/action_dispatch/autoload.php';
-require_once FRAMEWORK_PATH.'/active_support/autoload.php';
+foreach( $packages as $key => $value )
+{
+  $package = $value;
+  $autoload = 'autoload.php';
+  if(is_array($value))
+  {
+    $package = $key;
+    $autoload = $value['autoload'];
+  }
+  require_once FRAMEWORK_PATH.'/'.$package.'/'.$autoload;
+}
+

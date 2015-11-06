@@ -1,14 +1,13 @@
 <?php
 
+/*************************************************************************/
+/* Autoload any third-party apps installed through composer.             */
+/*************************************************************************/
+
 require_once FUCHSIA_ROOT_PATH.'/vendor/autoload.php';
 
-/************************************************************************************/
-/* This file provides the default object-namespace loading in the following order:  */
-/*  Fuchsia Framework                                                               */
-/************************************************************************************/
-
 /*************************************************************************/
-/* Autoload the Fuchsia Framework when it's namespaces are called.       */
+/* Autoload the Fuchsia Application when it's namespaces are called.     */
 /*************************************************************************/
   
 spl_autoload_register(function($class){
