@@ -18,7 +18,7 @@ define('DEV_MODE', true);
  * Use Active Record
  * Load active record library
  */
-define('USE_ACTIVE_RECORD', false);
+define('USE_ACTIVE_RECORD', true);
 
 /*
  * Default Template

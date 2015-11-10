@@ -24,12 +24,11 @@ if(USE_ACTIVE_RECORD)
 
 foreach($packages as $package)
 {
-  $package = $package->name;
+  $package_name = $package->name;
   $autoload = 'autoload.php';
-  if($package->autoload)
+  if(isset($package->autoload))
+  {
     $autoload = $package->autoload;
-    
-  require_once FRAMEWORK_PATH.'/'.$package.'/'.$autoload;
+  }
+  require_once FRAMEWORK_PATH.'/'.$package_name.'/'.$autoload;
 }
-
-

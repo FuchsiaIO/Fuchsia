@@ -16,6 +16,10 @@
     {
       "url": "https://github.com/FuchsiaIO/ActionView",
       "type": "git"
+    },
+    {
+      "url": "https://github.com/jpfuentes2/php-activerecord",
+      "type": "git"
     }
   ],
   
@@ -25,17 +29,18 @@
     "FuchsiaIO/ActionDispatch": "dev-master",
     "FuchsiaIO/ActiveSupport": "dev-master",
     "FuchsiaIO/ActionView": "dev-master",
+    "php-activerecord/php-activerecord": "dev-master",
     "apache/log4php": "2.3.0",
     "mthaml/mthaml": "@dev"
   },
-  
   "extra":{
     "installer-paths":{
       "./fuchsia/action_controller": ["FuchsiaIO/ActionController"],
       "./fuchsia/action_dispatch": ["FuchsiaIO/ActionDispatch"],
       "./fuchsia/active_support": ["FuchsiaIO/ActiveSupport"],
       "./fuchsia/action_controller/vendor/action_view": ["FuchsiaIO/ActionView"],
-      "./fuchsia/action_controller/vendor/action_view/vendor/haml": ["mthaml/mthaml"]
+      "./fuchsia/action_controller/vendor/action_view/vendor/haml": ["mthaml/mthaml"],
+      "./fuchsia/active_record": ["php-activerecord/php-activerecord"]
     }
   }
   
