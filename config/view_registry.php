@@ -1,6 +1,10 @@
 <?php
 
-$viewMap = array_map($view ==> VIEW_PATH.'/'.$view, array(
-	  'index.index' => 'index/index.hh',
+function view_path($view){
+  return VIEW_PATH.'/'.$view;
+}
+
+$viewMap = array_map("view_path", array(
+	  'index.index' => 'index/index.php',
 	)
 );
