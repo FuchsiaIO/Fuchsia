@@ -126,6 +126,7 @@
 // HTML
 
         case '.html':
+          
           $controller->loadViewRegistries();
           $controller->view->addData((array)$controller->getData());
 
@@ -142,12 +143,17 @@
           
           if(is_bool($controller->getRenderer()->getData()['.html']))
           {
-
 //-------------------
 // HTML - fuchsia.default
 
-            $viewName = $controllerName.'/'.$actionName.'.php';
-            $controller->view->getViewRegistry()->set('fuchsia.default',VIEW_PATH.'/'.$dir.$viewName);
+            $viewName = $controllerName.'/'.$actionName;
+            $path = VIEW_PATH.'/'.$dir;
+            if( file_exists($path.$viewName.'.haml.php') )
+              $viewName .= '.haml.php';
+            else
+              $viewName .= '.php';
+              
+            $controller->view->getViewRegistry()->set('fuchsia.default',$path.$viewName);
             $controller->view->setView('fuchsia.default');
             
             $logger->trace('Setting fuchsia.default: '.$viewName);
@@ -162,7 +168,7 @@
             $logger->trace('Defined View: '.$controller->getRenderer()->getData()->get('.html'));
             
             $controller->view->setView(
-              $controller->getRenderer()->getData()->get('.html')
+              $controller->getRenderer()->getData()['.html']
             );
               
           }
