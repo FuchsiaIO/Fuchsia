@@ -8,4 +8,7 @@
   <package>
     <name>active_support</name>
   </package>
+  <package>
+    <name>action_view</name>
+  </package>
 </packages>

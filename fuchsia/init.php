@@ -127,22 +127,31 @@
 
         case '.html':
           
-          $controller->loadViewRegistries();
-          $controller->view->addData((array)$controller->getData());
+          //$controller->loadViewRegistries();
+          //$controller->view->addData((array)$controller->getData());
+
+          $view = (new \ActionView\Factory\ViewFactory)->newInstance();
+          $view->setRegistries(
+            new \ActionView\Registry\TemplateRegistry($viewMap),
+            new \ActionView\Registry\TemplateRegistry($templateMap)
+          );
+          
+          $view->addData((array)$controller->getData());
 
 //-------------------
 // Execute the requested action TODO: Add validation
           
-          if(!$controller->view->getLayout())
+          if(!$controller->getTemplate())
           {
-            $controller->view->setLayout(
+            $controller->setTemplate(
               $route->params['template'] ? $route->params['template'] : 'master'
             );
-            $logger->trace('Loading Template: '.$controller->view->getLayout());
+            $logger->trace('Loading Template: '.$controller->getTemplate());
           }
           
           if(is_bool($controller->getRenderer()->getData()['.html']))
           {
+
 //-------------------
 // HTML - fuchsia.default
 
@@ -152,9 +161,9 @@
               $viewName .= '.haml.php';
             else
               $viewName .= '.php';
-              
-            $controller->view->getViewRegistry()->set('fuchsia.default',$path.$viewName);
-            $controller->view->setView('fuchsia.default');
+            
+            $view->getViewRegistry()->set('fuchsia.default',$path.$viewName);
+            $view->setView('fuchsia.default');
             
             $logger->trace('Setting fuchsia.default: '.$viewName);
                       
@@ -167,13 +176,13 @@
             
             $logger->trace('Defined View: '.$controller->getRenderer()->getData()->get('.html'));
             
-            $controller->view->setView(
+            $view->setView(
               $controller->getRenderer()->getData()['.html']
             );
               
           }
           
-          echo $controller->view->__invoke((array)$controller->getData());
+          echo $view->__invoke((array)$controller->getData());
           break;
           
 //-------------------

@@ -38,8 +38,8 @@
       "./fuchsia/action_controller": ["FuchsiaIO/ActionController"],
       "./fuchsia/action_dispatch": ["FuchsiaIO/ActionDispatch"],
       "./fuchsia/active_support": ["FuchsiaIO/ActiveSupport"],
-      "./fuchsia/action_controller/vendor/action_view": ["FuchsiaIO/ActionView"],
-      "./fuchsia/action_controller/vendor/action_view/vendor/haml": ["mthaml/mthaml"],
+      "./fuchsia/action_view": ["FuchsiaIO/ActionView"],
+      "./fuchsia/action_view/vendor/haml": ["mthaml/mthaml"],
       "./fuchsia/active_record": ["php-activerecord/php-activerecord"]
     }
   }
