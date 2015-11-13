@@ -174,12 +174,12 @@
 //-------------------
 // HTML - specified route
             
-            $logger->trace('Defined View: '.$controller->getRenderer()->getData()->get('.html'));
+            $logger->trace('Defined View: '.$controller->getRenderer()->getData()['.html']);
             
             $view->setView(
               $controller->getRenderer()->getData()['.html']
             );
-              
+
           }
           
           echo $view->__invoke((array)$controller->getData());
