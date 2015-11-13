@@ -164,7 +164,7 @@
             
             $view->getViewRegistry()->set('fuchsia.default',$path.$viewName);
             $view->setView('fuchsia.default');
-            
+            $view->setLayout($controller->getTemplate());
             $logger->trace('Setting fuchsia.default: '.$viewName);
                       
           }
