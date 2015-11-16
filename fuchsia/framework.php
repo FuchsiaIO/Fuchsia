@@ -15,13 +15,6 @@
 
 $packages = simplexml_load_string(file_get_contents(CONFIG_PATH.'/packages.xml'));
 
-if(USE_ACTIVE_RECORD)
-{
-  $ar = $packages->addChild('package');
-  $ar->addChild('name', 'active_record');
-  $ar->addChild('autoload', 'ActiveRecord.php');
-}
-
 foreach($packages as $package)
 {
   $package_name = $package->name;

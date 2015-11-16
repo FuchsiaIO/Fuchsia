@@ -15,12 +15,6 @@ define('FUCHSIA_ROOT_PATH', dirname(dirname(__FILE__)));
 define('DEV_MODE', true);
 
 /*
- * Use Active Record
- * Load active record library
- */
-define('USE_ACTIVE_RECORD', true);
-
-/*
  * Default Template
  * The default template
  */
