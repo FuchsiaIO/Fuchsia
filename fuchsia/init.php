@@ -76,12 +76,17 @@
     
     if(method_exists($controller, $actionName))
     {
-      if(method_exists($controller, 'filter'))
+      $has_filters = method_exists($controller, 'filter');
+      if($has_filters)
         $controller->filter($actionName);
         
       $logger->trace('Executing Action: '.$actionName);
       $logger->trace('   => '.json_encode($params));
       call_user_func_array(array($controller,$actionName), $params);
+      
+      if($has_filters)
+        $controller->filter($actionName, 'After');
+      
     }
     else
     {
