@@ -2,4 +2,4 @@
   %head
   %body
     %main
-      !=$this->getContent()
+      !=$view->getContent()
