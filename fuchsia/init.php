@@ -33,20 +33,21 @@
 	$_SERVER['REQUEST_URI'] = (substr($_SERVER['REQUEST_URI'],-1) == '/' && strlen($_SERVER['REQUEST_URI']) > 1) ? substr($_SERVER['REQUEST_URI'],0,-1) : $_SERVER['REQUEST_URI'];
 	$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 	$route = $router->match($path, $_SERVER);
-  
+		
 //-------------------
 // Check whether a route has been found 
 
   if ($route)
   {
-    
+		
     $logger->trace($route->method[0].' "'.$route->path.'"');
     $logger->trace('Configs: '.json_encode($route->params));
   
 		$controllerName = $route->params['controller'];
 		$actionName = $route->params['action'];
 		$dir = isset($route->params['directory']) && $route->params['directory'] ? str_replace('/','\\',$route->params['directory'].'/') : ''; 
-		 		
+
+		
 //-------------------
 // If the controller name does not have a namespace
 // load from the default Application namespace
@@ -62,18 +63,11 @@
     {
       $controller = new BASE_PATH.$controllerName();
     }
-    
-    $params = array();
-    
-    if( preg_match_all('/{+(.*?)}/', $route->path, $getParams) )
-    {
-      foreach($getParams[1] as $match)
-      {
-        $params[$match] = $route->params[$match];
-      }
-      unset($getParams);
-    }
-    
+
+    $params = array_diff_key($route->params, 
+      array_flip( array('controller','action','template','format','directory') )
+    );
+
     if(method_exists($controller, $actionName))
     {
       $has_filters = method_exists($controller, 'filter');
