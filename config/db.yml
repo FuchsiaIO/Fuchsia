@@ -19,3 +19,5 @@ environments:
       port: 3306
       charset: utf8
       collation: utf8_unicode_ci
+paths:
+    migrations: /var/www/fuchsia_framework/migrations
