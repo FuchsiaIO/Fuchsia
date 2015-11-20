@@ -31,7 +31,8 @@
     "FuchsiaIO/ActionView": "dev-master",
     "php-activerecord/php-activerecord": "dev-master",
     "apache/log4php": "2.3.0",
-    "mthaml/mthaml": "@dev"
+    "mthaml/mthaml": "@dev",
+    "symfony/yaml": "~2.7"
   },
   "extra":{
     "installer-paths":{
