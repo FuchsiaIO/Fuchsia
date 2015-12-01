@@ -1,0 +1,10 @@
+packages:
+  fuchsia:
+    action_controller:
+      version: default
+    action_dispatch: 
+      version: default
+    action_view:
+      version: default
+    active_support:
+      version: default

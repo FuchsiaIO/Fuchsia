@@ -13,15 +13,15 @@
 //   Active Record autoloading is handled in the framework_path/framework.php
 //
 
-$packages = simplexml_load_string(file_get_contents(CONFIG_PATH.'/packages.xml'));
+$yml = \Symfony\Component\Yaml\Yaml::parse(file_get_contents(CONFIG_PATH.'/packages.yml'));
 
-foreach($packages as $package)
+foreach($yml['packages']['fuchsia'] as $package => $data)
 {
-  $package_name = $package->name;
+  $package_name = $package;
   $autoload = 'autoload.php';
-  if(isset($package->autoload))
-  {
-    $autoload = $package->autoload;
-  }
+  if(array_key_exists('autoload',$data))
+    $autoload = $data['autoload'];
+  if(array_key_exists('version',$data) && $data['version'] != 'default')
+    $package_name .= '_'.$data['version'];
   require_once FRAMEWORK_PATH.'/'.$package_name.'/'.$autoload;
 }
