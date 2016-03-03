@@ -11,7 +11,7 @@
 
 require_once 'config/constants.php';
 
-if (file_exists(__DIR__ . '/' . $_SERVER['REQUEST_URI'])) {
+if (file_exists(FUCHSIA_ROOT_PATH . '/public_html' . $_SERVER['REQUEST_URI'])) {
  return false; // serve the requested resource as-is.
 } else {
  require_once FUCHSIA_ROOT_PATH.'/public_html/index.php';
