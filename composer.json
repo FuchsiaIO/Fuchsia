@@ -28,7 +28,7 @@
     "FuchsiaIO/ActionController": "dev-master",
     "FuchsiaIO/ActionDispatch": "dev-master",
     "FuchsiaIO/ActiveSupport": "dev-master",
-    "FuchsiaIO/ActionView": "dev-autoload",
+    "FuchsiaIO/ActionView": "dev-master",
     "php-activerecord/php-activerecord": "dev-master",
     "apache/log4php": "2.3.0",
     "mthaml/mthaml": "@dev",
